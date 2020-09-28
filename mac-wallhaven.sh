@@ -26,7 +26,7 @@
 
     wget "$(cat walps.txt | head -"$(echo $((($RANDOM%$(cat walps.txt | wc -l))+1)))" | tail -1)" -O wallpaper.html -q
 
-    wget $(cat wallpaper.html | grep -o "id=\"wallpaper\".*alt" | grep -o "src=\".*\"" | sed 's/src="//' | sed 's/"//') -O pic.jpg -q 
+    wget $(cat wallpaper.html | grep -o "id=\"wallpaper\".*alt" | grep -o "src=\".*\"" | sed 's/src="//' | sed 's/"//') -O pic.jpg -q
 
     # Setting wallpaper in osx
     osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'$(pwd)'/pic.jpg"'
