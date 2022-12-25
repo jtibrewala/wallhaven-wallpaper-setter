@@ -20,16 +20,16 @@
 
     # Downloading picture
     # wget "https://wallhaven.cc/search?q=buddha&categories=111&purity=100&atleast=1920x1080&sorting=random&order=desc&seed=fzEn8" -O walp.html -q
-    wget $randurl -O walp.html -q
+    /opt/homebrew/bin/wget $randurl -O walp.html -q
 
     cat walp.html | grep -Eo 'https://wallhaven.cc/w/[0-9a-z]{1,6}' > walps.txt
 
-    wget "$(cat walps.txt | head -"$(echo $((($RANDOM%$(cat walps.txt | wc -l))+1)))" | tail -1)" -O wallpaper.html -q
+    /opt/homebrew/bin/wget "$(cat walps.txt | head -"$(echo $((($RANDOM%$(cat walps.txt | wc -l))+1)))" | tail -1)" -O wallpaper.html -q
 
-    wget $(cat wallpaper.html | grep -o "id=\"wallpaper\".*alt" | grep -o "src=\".*\"" | sed 's/src="//' | sed 's/"//') -O pic.jpg -q
+    /opt/homebrew/bin/wget $(cat wallpaper.html | grep -o "id=\"wallpaper\".*alt" | grep -o "src=\".*\"" | sed 's/src="//' | sed 's/"//') -O pic.jpg -q
 
     # Setting wallpaper in osx
-    osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'$(pwd)'/pic.jpg"'
+    /usr/bin/osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'$(pwd)'/pic.jpg"'
 
     # Removing unused folder
     cd ..
